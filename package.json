@@ -4,6 +4,11 @@
   "scripts": {
     "test": "tsc && node ./src/test.js"
   },
+  "keywords": [
+    "retry",
+    "async",
+    "promise"
+  ],
   "devDependencies": {
     "@types/node": "22.2.0",
     "typescript": "5.5.4"
