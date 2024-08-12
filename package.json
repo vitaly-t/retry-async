@@ -2,8 +2,7 @@
   "name": "retry-async",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsc",
-    "test": "node ./src/test.js"
+    "test": "tsc && node ./src/test.js"
   },
   "devDependencies": {
     "@types/node": "22.2.0",
