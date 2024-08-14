@@ -12,7 +12,6 @@ export type RetryStatus = {
     duration: number,
     /**
      * last error, if available;
-     *
      * it is undefined only when "retryAsync" calls "func" with index = 0.
      */
     error?: any
@@ -53,8 +52,8 @@ export function retryAsync<T>(func: RetryCB<Promise<T>>, options?: RetryOptions)
     const c: () => Promise<T> = () => func(s()).catch(err => {
         e = err;
         typeof error === 'function' && error(s()); // error notification
-        const r = typeof retry === 'function' ? retry(s()) : retry--; // get retry flag
-        const d = typeof delay === 'function' ? delay(s()) : delay; // get delay value
+        const r = typeof retry === 'function' ? retry(s()) : retry--; // retry flag/value
+        const d = typeof delay === 'function' ? delay(s()) : delay; // delay value
         index++;
         const t = () => r ? c() : Promise.reject(e); // retry vs reject test
         return d >= 0 ? (new Promise(a => setTimeout(a, d))).then(t) : t();
