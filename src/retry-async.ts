@@ -11,7 +11,9 @@ export type RetryStatus = {
      */
     duration: number,
     /**
-     * last error, if available
+     * last error, if available;
+     *
+     * it is undefined only when "retryAsync" calls "func" with index = 0.
      */
     error?: any
 };
@@ -42,8 +44,6 @@ export type RetryOptions = {
 
 /**
  * Retries async operation returned from "func" callback, according to options.
- *
- * Note that "func()" will receive "error" = undefined when "index" = 0.
  */
 export function retryAsync<T>(func: RetryCB<Promise<T>>, options?: RetryOptions) {
     const start = Date.now();
