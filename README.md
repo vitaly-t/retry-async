@@ -1,10 +1,12 @@
 # retry-async
 
-Straight up retry-async optimized implementation for copy-n-paste (no library)
+Optimized retry-async implementation for copy-n-paste (no library)
 
 Just copy [./src/retry-async.ts](./src/retry-async.ts) into your project, and you're good to go ;)
 
 Function `retryAsync` there is self-explanatory, and that is all you need.
+
+---
 
 Tested with TypeScript 5.x, in strict mode.
 
