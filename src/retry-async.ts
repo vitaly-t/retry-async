@@ -44,7 +44,7 @@ export type RetryOptions = {
 /**
  * Retries async operation returned from "func" callback, according to options.
  */
-export function retryAsync<T>(func: RetryCB<Promise<T>>, options?: RetryOptions) {
+export function retryAsync<T>(func: RetryCB<Promise<T>>, options?: RetryOptions): Promise<T> {
     const start = Date.now();
     let index = 0, e: any;
     let {retry = Number.POSITIVE_INFINITY, delay = -1, error} = options ?? {};
