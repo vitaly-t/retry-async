@@ -2,7 +2,7 @@
  * Retries async operation returned from "func" callback, according to options.
  *
  * @param func - Retry function that returns a Promise
- * @param options - `{retry, delay, error}` object.
+ * @param [options] - optional `{retry, delay, error}` object.
  *
  * For parameter details, see the original TypeScript implementation:
  * https://github.com/vitaly-t/retry-async/blob/main/src/retry-async.ts
