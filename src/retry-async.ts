@@ -53,10 +53,12 @@ export function retryAsync<T>(func: RetryCB<Promise<T>>, options?: RetryOptions)
         e = err;
         typeof error === 'function' && error(s());
         const r = typeof retry === 'function' ? (retry(s()) ? 1 : 0) : retry--;
+        if (r <= 0) {
+            return Promise.reject(e);
+        }
         const d = typeof delay === 'function' ? delay(s()) : delay;
         index++;
-        const t = () => r > 0 ? c() : Promise.reject(e);
-        return d >= 0 ? (new Promise(a => setTimeout(a, d))).then(t) : t();
+        return d >= 0 ? (new Promise(a => setTimeout(a, d))).then(c) : c();
     });
     return c();
 }
