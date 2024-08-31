@@ -42,18 +42,17 @@ export type RetryOptions = {
 };
 
 /**
- * Retries async operation returned from "func" callback, according to options.
+ * Retries async operation returned from "func" callback, according to "options".
  */
 export function retryAsync<T>(func: RetryCB<Promise<T>>, options?: RetryOptions): Promise<T> {
     const start = Date.now();
     let index = 0, e: any;
     let {retry = Number.POSITIVE_INFINITY, delay = -1, error} = options ?? {};
     const s = () => ({index, duration: Date.now() - start, error: e});
-    const c: () => Promise<T> = () => func(s()).catch(err => {
+    const c = (): Promise<T> => func(s()).catch(err => {
         e = err;
         typeof error === 'function' && error(s());
-        const r = typeof retry === 'function' ? (retry(s()) ? 1 : 0) : retry--;
-        if (r <= 0) {
+        if ((typeof retry === 'function' ? (retry(s()) ? 1 : 0) : retry--) <= 0) {
             return Promise.reject(e);
         }
         const d = typeof delay === 'function' ? delay(s()) : delay;

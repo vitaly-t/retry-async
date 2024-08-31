@@ -1,5 +1,5 @@
 /**
- * Retries async operation returned from "func" callback, according to options.
+ * Retries async operation returned from "func" callback, according to "options".
  *
  * @param func - Retry function that returns a Promise
  * @param [options] - optional `{retry, delay, error}` object.
@@ -15,8 +15,7 @@ function retryAsync(func, options) {
     const c = () => func(s()).catch(err => {
         e = err;
         typeof error === 'function' && error(s());
-        const r = typeof retry === 'function' ? (retry(s()) ? 1 : 0) : retry--;
-        if (r <= 0) {
+        if ((typeof retry === 'function' ? (retry(s()) ? 1 : 0) : retry--) <= 0) {
             return Promise.reject(e);
         }
         const d = typeof delay === 'function' ? delay(s()) : delay;
