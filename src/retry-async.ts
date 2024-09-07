@@ -3,15 +3,15 @@
  */
 export type RetryStatus = {
     /**
-     * retry index, starting from 0
+     * Retry index, starting from 0.
      */
     index: number,
     /**
-     * retry overall duration, in ms
+     * Retry overall duration, in milliseconds.
      */
     duration: number,
     /**
-     * last error, if available;
+     * Last error, if available;
      * it is undefined only when "retryAsync" calls "func" with index = 0.
      */
     error?: any
@@ -27,16 +27,17 @@ export type RetryCB<T> = (s: RetryStatus) => T;
  */
 export type RetryOptions = {
     /**
-     * maximum number of retries (infinite by default),
-     * or a callback to indicate the need for another retry
+     * Maximum number of retries (infinite by default),
+     * or a callback to indicate the need for another retry.
      */
     retry?: number | RetryCB<boolean>,
     /**
-     * retry delays, in ms, or a callback that returns them
+     * Retry delays, in milliseconds (no delay by default),
+     * or a callback that returns the delays.
      */
     delay?: number | RetryCB<number>,
     /**
-     * error notifications
+     * Error notifications.
      */
     error?: RetryCB<void>
 };
