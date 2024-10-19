@@ -7,7 +7,7 @@ async function makeRequest(s: RetryStatus) {
     if (--failCount >= 0) {
         throw new Error(`Request failed ${s.index + 1} time(s)`);
     }
-    return `Request succeeded after ${s.duration}ms`;
+    return `Request succeeded after ${s.duration}ms and ${s.index + 1} attempt(s)`;
 }
 
 // use delays with 0.5s increments:
