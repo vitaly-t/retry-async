@@ -15,7 +15,7 @@
 
 /**
  * @function retryAsync
- * Retries async operation returned from "func" callback, according to "options".
+ * Retries async operation returned from `func` callback, according to `options`.
  *
  * @param {(s:RetryStatus) => Promise} func
  * Function that returns a Promise - result of the async operation to be retried.
@@ -36,6 +36,15 @@
  *
  * @returns {Promise}
  * Async result from the callback function.
+ *
+ * @example
+ *
+ * const {retryAsync} = require('./retry-async');
+ *
+ * // try making async request up to 3 times:
+ * retryAsync(makeAsyncRequestFunc, {retry: 3})
+ *     .then(console.log)
+ *     .catch(console.error);
  */
 function retryAsync(func, options) {
     const start = Date.now();

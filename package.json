@@ -10,7 +10,7 @@
     "promise"
   ],
   "devDependencies": {
-    "@types/node": "22.2.0",
-    "typescript": "5.5.4"
+    "@types/node": "22.14.0",
+    "typescript": "5.8.3"
   }
 }
