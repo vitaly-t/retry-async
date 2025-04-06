@@ -1,9 +1,9 @@
 /**
  * @type {object} RetryStatus
- * Retry-status object type
+ * Retry-status object type.
  *
  * @param {number} RetryStatus.index
- * Retry overall duration, in milliseconds
+ * Retry overall duration, in milliseconds.
  *
  * @param {number} RetryStatus.duration
  * Retry overall duration, in milliseconds.
@@ -21,7 +21,7 @@
  * Function that returns a Promise - result of the async operation to be retried.
  *
  * @param {object} [options]
- * Optional Retry Options object.
+ * Retry Options object.
  *
  * @param {number|((s:RetryStatus)=>number)} [options.retry]
  * Maximum number of retries (infinite by default),
@@ -35,6 +35,7 @@
  * Error notifications.
  *
  * @returns {Promise}
+ * Async result from the callback function.
  */
 function retryAsync(func, options) {
     const start = Date.now();
