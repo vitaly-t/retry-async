@@ -11,6 +11,9 @@
  * @param {Error} [error]
  * Last error, if available;
  * It is undefined only when "retryAsync" calls "func" with index = 0.
+ *
+ * @param {any} [data]
+ * Extra data for status handlers, if specified.
  */
 
 /**
@@ -34,6 +37,9 @@
  * @param {(s:RetryStatus)=>void} [options.error]
  * Error notifications.
  *
+ * @param {any} [options.data]
+ * Extra data for status handlers.
+ *
  * @returns {Promise}
  * Async result from the callback function.
  *
@@ -49,8 +55,8 @@
 function retryAsync(func, options) {
     const start = Date.now();
     let index = 0, e;
-    let {retry = Number.POSITIVE_INFINITY, delay = -1, error} = options ?? {};
-    const s = () => ({index, duration: Date.now() - start, error: e});
+    let {retry = Number.POSITIVE_INFINITY, delay = -1, error, data} = options ?? {};
+    const s = () => ({index, duration: Date.now() - start, error: e, data});
     const c = () => func(s()).catch(err => {
         e = err;
         typeof error === 'function' && error(s());
