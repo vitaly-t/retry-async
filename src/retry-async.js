@@ -8,7 +8,7 @@
  * @param {number} RetryStatus.duration
  * Retry overall duration, in milliseconds.
  *
- * @param {any} [error]
+ * @param {Error} [error]
  * Last error, if available;
  * It is undefined only when "retryAsync" calls "func" with index = 0.
  */

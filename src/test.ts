@@ -17,7 +17,7 @@ const delay = (s: RetryStatus) => (s.index + 1) * 500;
 const retry = (s: RetryStatus) => s.index < 5 && s.duration <= 4000;
 
 const error = (s: RetryStatus) => {
-    const info = {index: s.index, duration: s.duration, error: s.error.message};
+    const info = {index: s.index, duration: s.duration, error: s.error?.message};
     // console.error('Handling:', info);
 }
 

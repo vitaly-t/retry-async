@@ -14,7 +14,7 @@ export type RetryStatus = {
      * Last error, if available;
      * it is undefined only when "retryAsync" calls "func" with index = 0.
      */
-    error?: any
+    error?: Error
 };
 
 /**
