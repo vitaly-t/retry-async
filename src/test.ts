@@ -18,11 +18,11 @@ const retry = (s: RetryStatus) => s.index < 5 && s.duration <= 4000;
 
 const error = (s: RetryStatus) => {
     const info = {index: s.index, duration: s.duration, error: s.error?.message};
-    // console.error('Handling:', info);
+    console.error('Handling:', info);
 }
 
 (function test() {
-    retryAsync(makeRequest, {retry, delay: -1, error})
+    retryAsync(makeRequest, {retry, delay, error})
         .then(data => console.log('SUCCESS:', data))
         .catch(err => console.error('FAILED:', err));
 })();
