@@ -27,7 +27,7 @@ export type RetryStatus<D = unknown> = {
 /**
  * Retry-status callback type.
  */
-export type RetryCB<T, D> = (s: RetryStatus<D>) => T;
+export type RetryCB<T, D = unknown> = (s: RetryStatus<D>) => T;
 
 /**
  * Type for options passed into retryAsync function.
